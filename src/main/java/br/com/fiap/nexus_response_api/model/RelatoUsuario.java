@@ -22,12 +22,16 @@ public class RelatoUsuario {
     @Column(name = "id_relato_usuario")
     private Long id;
 
-    @NotNull(message = "A data/hora do relato não pode ser nula")
+    /*@NotNull(message = "A data/hora do relato não pode ser nula")
     @PastOrPresent(message = "A data/hora do relato deve estar no passado ou presente")
     @Column(name = "dt_relato", nullable = false)
-    private LocalDateTime dataHoraRelato;
+    private LocalDateTime dataHoraRelato;*/
+
+    @NotBlank(message = "A localização não pode estar em branco")
+    @Column(name = "ds_localizacao", nullable = false)
+    private String localizacao; // Pode ser coordenadas, endereço, etc.
 
     @NotBlank(message = "A mensagem do relato não pode estar em branco")
     @Column(name = "ds_mensagem", nullable = false, length = 2000) // Mensagem mais longa
-    private String mensagem;
+    private String descricaoRelato;
 }
