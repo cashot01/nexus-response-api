@@ -4,6 +4,7 @@ import br.com.fiap.nexus_response_api.model.Credentials;
 import br.com.fiap.nexus_response_api.model.Token;
 import br.com.fiap.nexus_response_api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,18 +25,23 @@ public class AuthService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return repository.findByEmail(username).orElseThrow(() ->
-                new ResourceNotFoundException("Usuário não encontrado com email: " + username));
+        var user = repository.findByEmail(username).orElseThrow(
+                () -> new UsernameNotFoundException(username, null));
+        System.out.println("User found:" + user);
+        return user;
     }
 
-    public Token login(Credentials credentials) {
+    public Token login(Credentials credentials){
         var user = repository.findByEmail(credentials.email())
-                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
+                .orElseThrow( () -> new UsernameNotFoundException("Usuário não encontrado", null));
 
-        if (!passwordEncoder.matches(credentials.password(), user.getPassword())) {
-            throw new RuntimeException("Senha incorreta");
+        if(!passwordEncoder.matches(credentials.password(), user.getPassword()) ){
+            throw new BadCredentialsException("Senha incorreta");
         }
 
         return tokenService.createToken(user);
     }
+
+
+
 }

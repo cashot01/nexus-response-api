@@ -2,6 +2,7 @@ package br.com.fiap.nexus_response_api.service;
 
 import br.com.fiap.nexus_response_api.model.Token;
 import br.com.fiap.nexus_response_api.model.Usuario;
+import br.com.fiap.nexus_response_api.model.UsuarioRole;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import jakarta.annotation.PostConstruct;
@@ -14,26 +15,26 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    private final Long DURATION = 120L; // 120 minutos
+    private final Long DURATION = 120L; // 120 minutes
     private Algorithm ALG;
 
     @Value("${jwt.secret}")
     private String secret;
 
     @PostConstruct
-    public void init() {
+    public void init(){
         ALG = Algorithm.HMAC256(secret);
     }
 
-    public Token createToken(Usuario user) {
+    public Token createToken(Usuario usuario){
         var token = JWT.create()
-                .withSubject(user.getId().toString())
-                .withClaim("email", user.getEmail())
-                .withClaim("role", user.getRole())
+                .withSubject(usuario.getId().toString())
+                .withClaim("email", usuario.getEmail())
+                .withClaim("paple", usuario.getPapel().toString())
                 .withExpiresAt(LocalDateTime.now().plusMinutes(DURATION).toInstant(ZoneOffset.ofHours(-3)))
                 .sign(ALG);
+        return new Token(token, 21315656L, "Bearer", usuario.getPapel().toString());
 
-        return new Token(token, 21315656L, "Bearer", user.getRole());
     }
 
     public Usuario getUserFromToken(String token) {
@@ -41,10 +42,13 @@ public class TokenService {
                 .build()
                 .verify(token);
 
-        return Usuario.builder()
-                .id(Long.parseLong(verifiedToken.getSubject()))
-                .email(verifiedToken.getClaim("email").asString())
-                .role(verifiedToken.getClaim("role").asString())
+        return Usuario
+                .builder()
+                .id(Long.parseLong( verifiedToken.getSubject() ))
+                .email(verifiedToken.getClaim("email").toString())
+                .papel(UsuarioRole.valueOf(verifiedToken.getClaim("papel").asString()))
                 .build();
+
     }
+
 }

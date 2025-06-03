@@ -1,6 +1,5 @@
 package br.com.fiap.nexus_response_api.model;
 
-import br.com.fiap.nexus_response_api.model.enuns.UsuarioRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -61,6 +60,11 @@ public class Usuario implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
     }
 
 }

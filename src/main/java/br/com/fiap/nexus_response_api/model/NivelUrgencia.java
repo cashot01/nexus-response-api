@@ -1,7 +1,5 @@
 package br.com.fiap.nexus_response_api.model;
 
-import br.com.fiap.nexus_response_api.model.EnvironmentalNode;
-import br.com.fiap.nexus_response_api.model.enuns.TipoNivelUrgencia;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
