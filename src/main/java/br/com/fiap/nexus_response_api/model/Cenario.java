@@ -1,6 +1,6 @@
 package br.com.fiap.nexus_response_api.model;
 
-import br.com.fiap.nexus_response_api.model.enuns.NivelUrgencia;
+import br.com.fiap.nexus_response_api.model.enuns.TipoNivelUrgencia;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class Cenario {
     private LocalDate dataReporte;
 
     @NotNull(message = "nivel de urgencia obrigatorio")
-    private NivelUrgencia nivelUrgencia;
+    private TipoNivelUrgencia nivelUrgencia;
 
     /*@Column(name = "nm_equipe_designada") // Nome da equipe que atenderá (se houver)
     private String equipeDesignada; */

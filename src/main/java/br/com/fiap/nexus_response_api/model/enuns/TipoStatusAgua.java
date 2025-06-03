@@ -1,8 +1,8 @@
 package br.com.fiap.nexus_response_api.model.enuns;
 
-public enum NivelUrgencia {
+public enum TipoStatusAgua {
     BAIXO,
-    MEDIO,
+    MODERADO,
     ALTO,
     CRITICO
 }
