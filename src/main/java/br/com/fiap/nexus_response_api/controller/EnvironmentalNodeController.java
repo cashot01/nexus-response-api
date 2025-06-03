@@ -3,7 +3,6 @@ package br.com.fiap.nexus_response_api.controller;
 import br.com.fiap.nexus_response_api.model.EnvironmentalNode;
 import br.com.fiap.nexus_response_api.model.Usuario;
 import br.com.fiap.nexus_response_api.repository.EnvironmentalNodeRepository;
-import br.com.fiap.nexus_response_api.service.EnvironmentalNodeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -72,7 +70,7 @@ public class EnvironmentalNodeController {
 
     @GetMapping
     @Cacheable("environmentalNodes")
-    @Operation(description = "Listar todos os nós ambientais", tags = "environmental-nodes", summary = "Lista de nós ambientais")
+    @Operation(description = "Listar todos os Environmental Node", tags = "environmental-nodes", summary = "Lista dos Environmentals Node")
     public List<EnvironmentalNode> index(@AuthenticationPrincipal Usuario usuario) {
         log.info("Buscando todos os nós ambientais");
         return repository.findByUsuario(usuario);

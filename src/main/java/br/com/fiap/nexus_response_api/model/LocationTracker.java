@@ -38,6 +38,10 @@ public class LocationTracker {
     @PastOrPresent(message = "A data de cadastro não pode ser futura")
     private LocalDate data;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
+
     @OneToMany(mappedBy = "locationTracker", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<EnvironmentalNode> environmentalNodes;
 }
