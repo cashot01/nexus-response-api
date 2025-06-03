@@ -1,6 +1,7 @@
 package br.com.fiap.nexus_response_api.controller;
 
 import br.com.fiap.nexus_response_api.model.NivelUrgencia;
+import br.com.fiap.nexus_response_api.service.NivelUrgenciaService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

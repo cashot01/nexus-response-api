@@ -48,14 +48,14 @@ public class Usuario implements UserDetails {
 
     @NotNull(message = "campo obrigatório")
     @Enumerated(EnumType.STRING)
-    private UsuarioRole role;
+    private UsuarioRole papel;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<EnvironmentalNode> environmentalNodes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.toString()));
+        return List.of(new SimpleGrantedAuthority(papel.toString()));
     }
 
     @Override
