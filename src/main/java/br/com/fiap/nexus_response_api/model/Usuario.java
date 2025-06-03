@@ -57,6 +57,8 @@ public class Usuario implements UserDetails {
         return List.of(new SimpleGrantedAuthority(papel.toString()));
     }
 
+
+
     @Override
     public String getUsername() {
         return email;
