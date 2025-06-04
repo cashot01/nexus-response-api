@@ -2,6 +2,7 @@ package br.com.fiap.nexus_response_api.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,21 +21,21 @@ public class EnvironmentalNode {
     @Column(name = "id_enviromental_node")
     private Long idEnvironmentalNode;
 
-    @NotBlank(message = "temperatura media obrigatoria")
-    @Column(name = "temp_media", nullable = false, precision = 5, scale = 2)
-    private BigDecimal tempMedia;
+    @NotNull(message = "temperatura media obrigatoria")
+    @Column(name = "temp_media", nullable = false)
+    private Double tempMedia;
 
-    @NotBlank(message = "temperatura dispositivo obrigatorio")
-    @Column(name = "temp_dispositivo", nullable = false, precision = 5, scale = 2)
-    private BigDecimal tempDispositivo;
+    @NotNull(message = "temperatura dispositivo obrigatorio")
+    @Column(name = "temp_dispositivo", nullable = false)
+    private Double tempDispositivo;
 
-    @NotBlank(message = "umidade obrigatoria")
-    @Column(name = "umidade", nullable = false, precision = 5, scale = 2)
-    private BigDecimal umidade;
+    @NotNull(message = "umidade obrigatoria")
+    @Column(name = "umidade", nullable = false)
+    private Double umidade;
 
-    @NotBlank(message = "nivel da agua obrigatoria")
-    @Column(name = "nivel_agua", nullable = false, precision = 5, scale = 2)
-    private BigDecimal nivelAgua;
+    @NotNull(message = "nivel da agua obrigatoria")
+    @Column(name = "nivel_agua", nullable = false)
+    private Double nivelAgua;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
@@ -42,11 +43,11 @@ public class EnvironmentalNode {
 
     @ManyToOne
     @JoinColumn(name = "id_nivel_urgencia", nullable = false)
-    private TipoNivelUrgencia nivelUrgencia;
+    private NivelUrgencia nivelUrgencia;
 
     @ManyToOne
     @JoinColumn(name = "id_status_agua", nullable = false)
-    private TipoStatusAgua statusAgua;
+    private StatusAgua statusAgua;
 
     @ManyToOne
     @JoinColumn(name = "id_location", nullable = false)
