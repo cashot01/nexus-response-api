@@ -20,6 +20,7 @@ public class StatusAgua {
     @Column(name = "id_status_agua")
     private Long idStatusAgua;
 
+    @Enumerated(EnumType.STRING)
     @NotBlank(message = "descrição agua obrigatorio")
     @Column(name = "descricao_agua", nullable = false, length = 20)
     private TipoStatusAgua descricaoAgua;

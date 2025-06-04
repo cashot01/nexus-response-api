@@ -19,6 +19,7 @@ public class NivelUrgencia {
     @Column(name = "id_nivel_urgencia")
     private Long idNivelUrgencia;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "descricao_nivel", nullable = false, length = 50)
     private TipoNivelUrgencia descricaoNivel;
 
