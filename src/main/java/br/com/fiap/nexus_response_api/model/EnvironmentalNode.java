@@ -23,19 +23,19 @@ public class EnvironmentalNode {
 
     @NotNull(message = "temperatura media obrigatoria")
     @Column(name = "temp_media", nullable = false)
-    private Double tempMedia;
+    private Number tempMedia;
 
     @NotNull(message = "temperatura dispositivo obrigatorio")
     @Column(name = "temp_dispositivo", nullable = false)
-    private Double tempDispositivo;
+    private Number tempDispositivo;
 
     @NotNull(message = "umidade obrigatoria")
     @Column(name = "umidade", nullable = false)
-    private Double umidade;
+    private Number umidade;
 
     @NotNull(message = "nivel da agua obrigatoria")
     @Column(name = "nivel_agua", nullable = false)
-    private Double nivelAgua;
+    private Number nivelAgua;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
